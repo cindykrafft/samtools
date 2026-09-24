@@ -3463,6 +3463,8 @@ sub test_stats
     test_cmd($opts,out=>'stat/21.stats.expected',cmd=>"$$opts{bin}/samtools stats $$opts{path}/stat/21_mixed_lengths.sam | grep -e\"^COV\"", exp_fix=>$efix);
     # duplicate counts exclude secondary and supplementary records, like "sequences"
     test_cmd($opts,out=>'stat/22.stats.expected',cmd=>"$$opts{bin}/samtools stats $$opts{path}/stat/22_dup_supp.sam | grep -E -e\"^SN.(sequences|reads duplicated|supplementary alignments|total length|bases duplicated):\"", exp_fix=>$efix);
+    # insert size standard deviation includes the isize 0 bin, as the mean does
+    test_cmd($opts,out=>'stat/23.stats.expected',cmd=>"$$opts{bin}/samtools stats $$opts{path}/stat/23_isize_zero.sam | grep -E -e\"^SN.insert size (average|standard deviation):\"", exp_fix=>$efix);
 
     #reference statistics tests
     #with ref-stats, no ref file

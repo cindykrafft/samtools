@@ -34,6 +34,11 @@ Bug fixes:
   had flagged the supplementary records of duplicates.  Duplicates are now
   counted for the same records as `sequences`.
 
+* FIX.  `samtools stats` left the insert size 0 bin out of the sum of squares
+  for `insert size standard deviation` while including it in the mean and in
+  the denominator, so pairs reported with TLEN 0 lowered the standard
+  deviation instead of raising it.
+
 Release 1.24 (9th July 2026)
 ----------------------------
 

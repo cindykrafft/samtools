@@ -1599,7 +1599,9 @@ void output_stats(FILE *to, stats_t *stats, int sparse)
         }
     }
     avg_isize /= nisize ? nisize : 1;
-    for (isize=1; isize<ibulk; isize++)
+    // Start at 0, as the mean and the denominator do: pairs in the isize 0
+    // bin must enter the sum of squares as well.
+    for (isize=0; isize<ibulk; isize++)
         sd_isize += (stats->isize->inward(stats->isize->data, isize) + stats->isize->outward(stats->isize->data, isize) +stats->isize->other(stats->isize->data, isize)) * (isize-avg_isize)*(isize-avg_isize) / (nisize ? nisize : 1);
     sd_isize = sqrt(sd_isize);
 
